@@ -1,0 +1,321 @@
+/* ============================================================
+   PRINT / PDF — Una sola página, diseño compacto y profesional.
+
+   Estrategia:
+   · @page { margin: 0 } elimina los headers/footers del navegador
+     (fecha, título, URL, número de página).
+   · Nosotros controlamos el espacio con padding en #print-cv.
+   · Se oculta TODO el sitio web y se muestra SOLO #print-cv.
+   · Tipografía: Arial. Colores: negro + azul (#0070f3) sin rellenos.
+   ============================================================ */
+
+@media print {
+
+  /* ── Página A4, sin márgenes de navegador ── */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  /* ── Ocultar todo el sitio ── */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html, body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 9pt !important;
+    color: #111 !important;
+  }
+
+  #navbar,
+  .hero,
+  #sobre-mi,
+  #experiencia,
+  #habilidades,
+  #proyectos,
+  #educacion,
+  #contacto,
+  .footer,
+  .pdf-fab {
+    display: none !important;
+  }
+
+  /* ── Mostrar solo el CV de impresión ── */
+  #print-cv {
+    display: block !important;
+    width: 210mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 9mm 11mm 8mm 11mm;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8.2pt;
+    color: #111;
+    line-height: 1.38;
+  }
+
+  /* ════════════════════════════════════════
+     HEADER
+  ════════════════════════════════════════ */
+  .pc-header {
+    border-bottom: 2pt solid #0070f3;
+    padding-bottom: 5mm;
+    margin-bottom: 5mm;
+  }
+
+  .pc-name-block {
+    margin-bottom: 2.5mm;
+  }
+
+  .pc-name {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 20pt !important;
+    font-weight: bold;
+    color: #000;
+    line-height: 1.1;
+    margin: 0 0 1.5mm 0;
+    letter-spacing: -0.3pt;
+    white-space: nowrap;
+    overflow: visible;
+  }
+
+  .pc-title {
+    font-size: 8.5pt;
+    color: #0070f3;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .pc-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1mm 6mm;
+    font-size: 7.5pt;
+    color: #333;
+    margin-top: 2mm;
+  }
+
+  .pc-contacts span {
+    display: flex;
+    align-items: center;
+    gap: 2pt;
+    white-space: nowrap;
+  }
+
+  .pc-contacts i {
+    color: #0070f3;
+    font-size: 7pt;
+  }
+
+  /* ════════════════════════════════════════
+     BODY: 2-column grid
+  ════════════════════════════════════════ */
+  .pc-body {
+    display: grid;
+    grid-template-columns: 67mm 1fr;
+    gap: 0 6mm;
+    align-items: start;
+  }
+
+  /* ── Left column ── */
+  .pc-left {
+    border-right: 1pt solid #d0dae8;
+    padding-right: 5mm;
+  }
+
+  /* ── Right column ── */
+  .pc-right {
+    padding-left: 0;
+  }
+
+  /* ════════════════════════════════════════
+     SECTION COMMON
+  ════════════════════════════════════════ */
+  .pc-sec {
+    margin-bottom: 4mm;
+  }
+
+  .pc-sec-title {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 7.8pt !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #0070f3;
+    border-bottom: 0.75pt solid #0070f3;
+    padding-bottom: 1pt;
+    margin: 0 0 2.5mm 0;
+  }
+
+  .pc-text {
+    font-size: 7.8pt;
+    color: #222;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* ════════════════════════════════════════
+     SKILLS
+  ════════════════════════════════════════ */
+  .pc-skill-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2mm;
+  }
+
+  .pc-skill-cat {
+    font-weight: bold;
+    font-size: 7.2pt;
+    color: #0070f3;
+    margin-bottom: 0.3mm;
+  }
+
+  .pc-skill-val {
+    font-size: 7.5pt;
+    color: #222;
+    line-height: 1.35;
+  }
+
+  /* ════════════════════════════════════════
+     LANGUAGES
+  ════════════════════════════════════════ */
+  .pc-lang-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5mm;
+    border-bottom: 0.5pt solid #edf0f4;
+    padding-bottom: 1.5mm;
+  }
+
+  .pc-lang-name {
+    font-weight: bold;
+    font-size: 7.8pt;
+    color: #111;
+  }
+
+  .pc-lang-lvl {
+    font-size: 7pt;
+    color: #555;
+  }
+
+  /* ════════════════════════════════════════
+     PROJECT
+  ════════════════════════════════════════ */
+  .pc-proj-name {
+    font-weight: bold;
+    font-size: 8pt;
+    color: #0070f3;
+    margin: 0 0 1mm 0;
+    font-family: 'Courier New', monospace;
+  }
+
+  .pc-proj-stack {
+    font-size: 7pt;
+    color: #555;
+    margin-top: 1.5mm;
+    font-style: italic;
+  }
+
+  /* ════════════════════════════════════════
+     EXPERIENCE
+  ════════════════════════════════════════ */
+  .pc-job {
+    margin-bottom: 3.5mm;
+    padding-bottom: 3mm;
+    border-bottom: 0.5pt solid #edf0f4;
+  }
+
+  .pc-job:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .pc-job-hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5mm;
+    gap: 2mm;
+  }
+
+  .pc-job-title {
+    font-size: 8.5pt;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .pc-job-co {
+    font-size: 8pt;
+    color: #0070f3;
+    font-weight: bold;
+  }
+
+  .pc-job-period {
+    font-size: 7pt;
+    color: #666;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-family: 'Courier New', monospace;
+  }
+
+  .pc-duties {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+  }
+
+  .pc-duties li {
+    font-size: 7.8pt;
+    color: #222;
+    padding-left: 7pt;
+    position: relative;
+    line-height: 1.38;
+  }
+
+  .pc-duties li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #0070f3;
+    font-size: 7pt;
+    top: 0.5pt;
+  }
+
+  .pc-duties li strong {
+    color: #000;
+    font-weight: bold;
+  }
+
+  /* ════════════════════════════════════════
+     EDUCATION
+  ════════════════════════════════════════ */
+  .pc-edu-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5mm;
+    margin-bottom: 2.5mm;
+    padding-left: 7pt;
+    border-left: 2pt solid #0070f3;
+  }
+
+  .pc-edu-deg {
+    font-size: 8pt;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .pc-edu-school {
+    font-size: 7.2pt;
+    color: #555;
+  }
+
+}

@@ -190,12 +190,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .nav-link:hover, .nav-link.active { color: var(--accent); }
 
+.nav-actions {
+  /* Mobile: pushed to the right, hamburger follows after */
+}
+
 .nav-toggle {
   display: flex;
   flex-direction: column;
   gap: 5px;
   padding: 6px;
-  margin-left: auto;
+  /* No margin-left: auto here — nav-actions carries it */
 }
 .nav-toggle span {
   display: block;
@@ -207,6 +211,39 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: auto; /* Mobile: pushes actions + hamburger to the right */
+}
+
+.lang-toggle {
+  height: 32px;
+  padding: 0 0.7rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface-2);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  transition: all 0.25s var(--ease);
+  cursor: pointer;
+}
+.lang-toggle:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+.lang-toggle.active-lang {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
 
 .theme-toggle {
   width: 36px; height: 36px;
@@ -231,8 +268,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     background: none;
     border: none;
     padding: 0;
-    margin-left: auto;
+    margin-left: auto; /* pushes links + actions to the right */
     gap: 0.25rem;
+  }
+  .nav-actions {
+    margin-left: 0; /* reset — nav-links carries the auto margin on desktop */
   }
   .nav-link { padding: 0.4rem 0.75rem; }
   .nav-link::after {
